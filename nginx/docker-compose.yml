@@ -1,0 +1,17 @@
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    image: nginx_image
+    ports:
+      - "8000:8000"
+    networks:
+      - net_test
+
+networks:
+  net_test:
+    driver: bridge
+
+

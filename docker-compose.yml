@@ -1,0 +1,55 @@
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    image: nginx_image
+    depends_on:
+      - wordpress
+    ports:
+      - "443:443"
+    networks:
+      - net_test
+  mariadb:
+    container_name: mariadb
+    build:
+      context: .
+      dockerfile: Dockerfile.mariadb
+    image: mariadb_image
+    networks:
+      - net_test
+    volumes:
+      - MYSQL_VOLUME:/var/lib/mysql
+    env_file: .env
+  wordpress:
+    container_name: wordpress
+    build:
+      context: .
+      dockerfile: Dockerfile.wordpress
+    image: wordpress_image
+    depends_on:
+      - mariadb
+    networks:
+      - net_test
+    volumes:
+      - WORDPRESS_VOLUME:/var/www/html
+    env_file: .env
+networks:
+  net_test:
+    driver: bridge
+
+volumes:
+  WORDPRESS_VOLUME:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/nbaghoug/data/wordpress
+      o: bind
+
+  MYSQL_VOLUME:
+    driver: local
+    driver_opts:
+      type: none
+      device:  /home/nbaghoug/data/mariadb
+      o: bind
