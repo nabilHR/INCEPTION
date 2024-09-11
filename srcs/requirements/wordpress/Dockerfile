@@ -6,11 +6,12 @@ RUN mkdir -p /var/www/html /run/php
 
 WORKDIR  /var/www/html
 
+RUN chown www-data:www-data /var/www/html
 RUN  curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     &&  mv wp-cli.phar /bin/wp 
 
 
-COPY wordpress.sh /usr/local/bin/entrypoint.sh
+COPY ./tools/wordpress.sh /usr/local/bin/entrypoint.sh
 
 RUN chmod +x /usr/local/bin/entrypoint.sh
 

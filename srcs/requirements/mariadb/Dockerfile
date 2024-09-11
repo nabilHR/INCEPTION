@@ -3,10 +3,13 @@ FROM debian:bullseye
 RUN apt  update &&  apt upgrade -y && apt install -y   net-tools iputils-ping vim mariadb-server
 
 WORKDIR  /mariadb/
-COPY mariadb.conf  /etc/mysql/mariadb.conf.d/50-server.cnf
+
+COPY ./tools/conf/mariadb.conf  /etc/mysql/mariadb.conf.d/50-server.cnf
+
 COPY  mariadb.sh .
-RUN chown -R mysql:mysql /var/lib/mysql
+
 RUN chmod 777 /var/lib/mysql
 
 RUN chmod +x mariadb.sh
+
 CMD [ "./mariadb.sh" ]

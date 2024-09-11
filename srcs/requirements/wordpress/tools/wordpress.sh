@@ -21,7 +21,7 @@ WP_DIR="/var/www/html"
 #   echo "WordPress files not found. Installing WordPress."
     wp core download --allow-root
     wp config create  --allow-root --dbname=wp_database  --dbuser=nabil   --dbpass=nabil --dbhost=mariadb:3306
-    wp core install --allow-root --url="http://localhost" --title="My WordPress Site" --admin_user="admin" --admin_password="securepassword" --admin_email="admin@example.com"
+    wp core install --allow-root --url="https://nbaghoug.42.fr" --title="My WordPress Site" --admin_user="admin" --admin_password="securepassword" --admin_email="admin@example.com"
 
 # fi
 
