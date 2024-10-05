@@ -2,6 +2,8 @@ DOCKER CONTAINER
 
 
 Docker Network
+
+
 bridge (default):
  The Docker bridge default network (docker0) is a virtual network bridge that connects containers, allowing them to communicate with each other via IP addresses while 
  isolating them from external networks unless explicitly connected.
